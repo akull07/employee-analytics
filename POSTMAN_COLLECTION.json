@@ -1,0 +1,511 @@
+{
+  "info": {
+    "name": "Candidate Shortlist AI API",
+    "description": "Complete Postman collection for AI-powered candidate shortlisting API",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Recruiter\",\n  \"email\": \"john@example.com\",\n  \"password\": \"securePassword123\",\n  \"company\": \"Tech Corp\",\n  \"department\": \"HR\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"securePassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Recruiter Updated\",\n  \"company\": \"New Company\",\n  \"department\": \"Recruitment\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Candidates",
+      "item": [
+        {
+          "name": "Create Candidate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Developer\",\n  \"email\": \"alice@example.com\",\n  \"phone\": \"+1234567890\",\n  \"skills\": [\"React\", \"Node.js\", \"MongoDB\", \"Python\"],\n  \"experience\": 5,\n  \"education\": [\n    {\n      \"degree\": \"B.Tech\",\n      \"field\": \"Computer Science\",\n      \"institution\": \"University XYZ\",\n      \"graduationYear\": 2018\n    }\n  ],\n  \"performanceScore\": 85,\n  \"bio\": \"Full-stack developer with passion for building scalable applications\",\n  \"github\": \"https://github.com/alice\",\n  \"linkedin\": \"https://linkedin.com/in/alice\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/candidates",
+              "host": ["{{baseUrl}}"],
+              "path": ["candidates"]
+            }
+          }
+        },
+        {
+          "name": "Get All Candidates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/candidates?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["candidates"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Candidate by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/candidates/{{candidateId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["candidates", "{{candidateId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Candidate",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Developer Updated\",\n  \"skills\": [\"React\", \"Node.js\", \"MongoDB\", \"Python\", \"AWS\"],\n  \"experience\": 6,\n  \"performanceScore\": 90\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/candidates/{{candidateId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["candidates", "{{candidateId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Candidate",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/candidates/{{candidateId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["candidates", "{{candidateId}}"]
+            }
+          }
+        },
+        {
+          "name": "Search Candidates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/candidates/search?query=alice&skills=React&minExperience=3",
+              "host": ["{{baseUrl}}"],
+              "path": ["candidates", "search"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "alice"
+                },
+                {
+                  "key": "skills",
+                  "value": "React"
+                },
+                {
+                  "key": "minExperience",
+                  "value": "3"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "Create Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobTitle\": \"Senior Full-Stack Developer\",\n  \"description\": \"Looking for experienced full-stack developer with expertise in MERN stack\",\n  \"requiredSkills\": [\"React\", \"Node.js\", \"MongoDB\"],\n  \"preferredSkills\": [\"Python\", \"AWS\", \"Docker\"],\n  \"minExperience\": 3,\n  \"maxExperience\": 8,\n  \"department\": \"Engineering\",\n  \"location\": \"Remote\",\n  \"jobType\": \"Full-time\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/jobs",
+              "host": ["{{baseUrl}}"],
+              "path": ["jobs"]
+            }
+          }
+        },
+        {
+          "name": "Get All Jobs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jobs?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["jobs"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Job by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["jobs", "{{jobId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Job",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobTitle\": \"Senior Full-Stack Developer (Updated)\",\n  \"minExperience\": 4\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["jobs", "{{jobId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Job",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["jobs", "{{jobId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI & Shortlisting",
+      "item": [
+        {
+          "name": "Shortlist Candidates",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobId\": \"{{jobId}}\",\n  \"candidateIds\": [\"{{candidateId}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ai/shortlist",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "shortlist"]
+            }
+          }
+        },
+        {
+          "name": "Get Shortlisted Candidates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ai/shortlist?jobId={{jobId}}&page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "shortlist"],
+              "query": [
+                {
+                  "key": "jobId",
+                  "value": "{{jobId}}"
+                },
+                {
+                  "key": "status",
+                  "value": "shortlisted"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Shortlist Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"interview_scheduled\",\n  \"notes\": \"Schedule interview for next week\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ai/shortlist/{{shortlistId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "shortlist", "{{shortlistId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get AI Recommendation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"candidateId\": \"{{candidateId}}\",\n  \"jobId\": \"{{jobId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ai/recommend",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "recommend"]
+            }
+          }
+        },
+        {
+          "name": "Generate Interview Questions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"candidateId\": \"{{candidateId}}\",\n  \"jobId\": \"{{jobId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ai/interview-questions",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "interview-questions"]
+            }
+          }
+        },
+        {
+          "name": "Rank Candidates",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobId\": \"{{jobId}}\",\n  \"limit\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ai/rank-candidates",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "rank-candidates"]
+            }
+          }
+        },
+        {
+          "name": "Get Improvement Suggestions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"candidateId\": \"{{candidateId}}\",\n  \"jobId\": \"{{jobId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ai/improvement-suggestions",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "improvement-suggestions"]
+            }
+          }
+        },
+        {
+          "name": "Get Analytics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ai/analytics",
+              "host": ["{{baseUrl}}"],
+              "path": ["ai", "analytics"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "candidateId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "jobId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "shortlistId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
